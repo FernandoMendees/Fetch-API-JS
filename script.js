@@ -22,6 +22,7 @@ button.addEventListener("click", async() => {
     
     }catch(error){
         alert(error);
+        
     }
 })
 
