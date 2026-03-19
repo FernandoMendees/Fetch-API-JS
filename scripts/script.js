@@ -1,32 +1,39 @@
 import { searchUser } from "./request.js";
-import { createDataItem } from "./utils.js";
+import { createDataItem, updateMessageErro} from "./utils.js";
 
 const buttonFetch = document.getElementById("btn-fetch");
 const message = document.getElementById("message");
+const emptyState = document.getElementById("empty-state");
 const userList = document.getElementById("user-list");
 
+
 buttonFetch.addEventListener("click", async ()=> {
+    buttonFetch.textContent = 'Carregando...';
+     message.textContent = '';
+
     try{
-        message.textContent = '';
 
         const userData = await searchUser();
 
-        if(!userData){
-            message.textContent = "Erro na requisição. Tente novamente."
-            message.style.display = "block";
+        if (!userData) {
+            updateMessageErro(message, emptyState);
+            buttonFetch.textContent = "Buscar Dados";
             return;
         }
 
-        const empty = document.getElementById("empty-state");
-        
-        if(empty) empty.style.display = "none";
+        setTimeout(()=> {  
+            if(empty) empty.style.display = "none";
 
-        userList.innerHTML = '';
+             userList.innerHTML = '';
+            
+            createDataItem(userData.name.first, userData.dob.age, userData.location.country, userList);
 
-        createDataItem(userData.name.first, userData.dob.age, userData.location.country, userList);
+            buttonFetch.textContent = "Buscar Dados";
 
-    }catch(error){
-        message.textContent = "Erro na requisição. Tente novamente."
-        message.style.display = "block";
-    }  
-})
+        }, 1000)
+
+    } catch(error){
+        updateMessageErro(message, emptyState)
+        buttonFetch.textContent = "Buscar Dados";
+    }
+});
