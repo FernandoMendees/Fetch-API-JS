@@ -1,48 +1,47 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Usuário</title>
-    <link rel="stylesheet" href="style.css">
+    <title>User Explorer | Dashboard</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-    <main class="container">
+    <main class="app-container">
+        <article class="card">
+            <header class="card-header">
+                <h1 class="card-title">Explorar Usuários</h1>
+                <p class="card-description">
+                    Gerencie e visualize informações de usuários da rede de forma instantânea.
+                </p>
+            </header>
 
-        <h1>Consulta de Usuário</h1>
+            <section class="card-action">
+                <button id="btn-fetch" class="btn-primary">
+                    <span>Buscar Dados</span>
+                </button>
+            </section>
 
-        <p class="descricao">
-            Clique no botão abaixo para buscar dados em uma API.
-        </p>
+            <hr class="divider">
 
-        <button id="btnBuscar">
-            Buscar dados
-        </button>
-
-        <section class="resultado">
-
-            <div class="campo">
-                <strong>Nome:</strong>
-                <span id="nome">---</span>
-            </div>
-
-            <div class="campo">
-                <strong>Email:</strong>
-                <span id="email">---</span>
-            </div>
-
-            <div class="campo">
-                <strong>Telefone:</strong>
-                <span id="telefone">---</span>
-            </div>
-
-        </section>
-
+            <section class="card-content">
+                <h2 class="section-title">Resultados da Consulta</h2>
+                
+                <ul id="user-list" class="user-list">
+                    <li class="message" id="message"> 
+                        <span>ERRO</span>
+                    </li>
+                    <li class="empty-state" id="empty-state">
+                        Nenhum dado carregado. Clique em "Buscar Dados" para iniciar.
+                    </li>
+                </ul>
+            </section>
+        </article>
     </main>
-
+    <script type="module" src="scripts/script.js"></script>
 </body>
-<script src="script.js"></script>
 </html>
