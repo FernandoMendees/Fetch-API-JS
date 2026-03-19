@@ -27,3 +27,7 @@ export function updateMessageErro(messageElement, emptyState) {
     messageElement.textContent = "Falha na requisição. Tente novamente."
     messageElement.style.display = "block";
 }
+
+export function updateButtonFetch(button) {
+    button.textContent = "Buscar Dados";
+}

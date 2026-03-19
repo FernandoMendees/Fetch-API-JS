@@ -1,5 +1,5 @@
 import { searchUser } from "./request.js";
-import { createDataItem, updateMessageErro} from "./utils.js";
+import { createDataItem, updateMessageErro, updateButtonFetch} from "./utils.js";
 
 const buttonFetch = document.getElementById("btn-fetch");
 const message = document.getElementById("message");
@@ -12,28 +12,26 @@ buttonFetch.addEventListener("click", async ()=> {
      message.textContent = '';
 
     try{
-
         const userData = await searchUser();
 
         if (!userData) {
             updateMessageErro(message, emptyState);
-            buttonFetch.textContent = "Buscar Dados";
+            updateButtonFetch(buttonFetch)
             return;
         }
 
         setTimeout(()=> {  
-            if(empty) empty.style.display = "none";
+            if(emptyState) emptyState.style.display = "none";
 
              userList.innerHTML = '';
             
             createDataItem(userData.name.first, userData.dob.age, userData.location.country, userList);
-
-            buttonFetch.textContent = "Buscar Dados";
+            updateButtonFetch(buttonFetch)
 
         }, 1000)
 
     } catch(error){
         updateMessageErro(message, emptyState)
-        buttonFetch.textContent = "Buscar Dados";
+        updateButtonFetch(buttonFetch);
     }
 });

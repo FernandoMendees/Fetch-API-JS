@@ -89,6 +89,7 @@ body {
     border: none;
     padding: 12px 24px;
     border-radius: 8px;
+    box-shadow: var(--shadow);
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
